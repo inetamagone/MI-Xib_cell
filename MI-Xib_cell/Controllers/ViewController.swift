@@ -11,9 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    //private var myCustomCell: CustomTableViewCell!
-    //@IBOutlet weak var myCustomCell: UITableViewCell!
-    
     var labelData = [
         LabelData(role: "Actors:", participantName: "Bruce Willis"),
         LabelData(role: "Camera operators:", participantName: "John Newton"),
@@ -22,13 +19,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.reuseId)
+        
+        myTableView.delegate = self
+        myTableView.dataSource = self
+        
+        myTableView.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseId)
+        
+        myTableView.rowHeight = 100
         myTableView.separatorColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         labelData.count
@@ -36,12 +42,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-        let nameData = labelData[indexPath.row]
-        cell.roleLabel.text = nameData.role
-        cell.nameLabel.text = nameData.participantName
+        cell.roleLabel.tag = indexPath.section
+        cell.nameLabel.tag = indexPath.section
+        cell.configure(labelList: labelData)
+        cell.selectionStyle = .none
         return cell
-        
     }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let nameData = labelData[indexPath.row]
+        print(nameData)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
