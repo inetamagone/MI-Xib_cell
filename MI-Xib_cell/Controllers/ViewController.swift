@@ -53,7 +53,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let nameData = labelData[indexPath.row]
         print(nameData)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -61,7 +61,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
 }
 
 
