@@ -11,9 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    //private var myCustomCell: CustomTableViewCell!
-    //@IBOutlet weak var myCustomCell: UITableViewCell!
-    
     var labelData = [
         LabelData(role: "Actors:", participantName: "Bruce Willis"),
         LabelData(role: "Camera operators:", participantName: "John Newton"),
@@ -29,7 +26,6 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         labelData.count
     }
@@ -40,8 +36,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.roleLabel.text = nameData.role
         cell.nameLabel.text = nameData.participantName
         return cell
-        
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -49,7 +45,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
 }
 
 
