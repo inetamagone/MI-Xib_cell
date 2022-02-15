@@ -8,7 +8,7 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -28,20 +28,6 @@ class CustomTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func initView() {
-        Bundle.main.loadNibNamed("CustomTableViewCell", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = self.frame
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -51,3 +37,18 @@ class CustomTableViewCell: UITableViewCell {
     }
 }
 
+private extension CustomTableViewCell {
+    
+    func initView() {
+        Bundle.main.loadNibNamed("CustomTableViewCell", owner: self, options: nil)
+        addSubview(contentView)
+        contentView.frame = self.frame
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+}
