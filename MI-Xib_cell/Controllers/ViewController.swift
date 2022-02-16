@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var myTableView: UITableView!
     
     var labelData = [
-        LabelData(role: "Actors:", participantName: "Bruce Willis"),
-        LabelData(role: "Camera operators:", participantName: "John Newton"),
-        LabelData(role: "Cinemathographers:", participantName: "Robert Bridge Richardson")
+        LabelData(role: "Actor:", participantName: "Bruce Willis"),
+        LabelData(role: "Camera operator:", participantName: "John Newton"),
+        LabelData(role: "Cinemathographer and author:", participantName: "Robert Bridge Richardson")
     ]
     
     override func viewDidLoad() {
@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         myTableView.delegate = self
         myTableView.dataSource = self
         
-        //myTableView.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseId)
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.reuseId)
         myTableView.rowHeight = 100
         myTableView.separatorColor = .clear
@@ -42,8 +41,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-        
-        cell.configure(labelList: labelData)
+        cell.roleLabel.text = labelData[indexPath.row].role
+        cell.nameLabel.text = labelData[indexPath.row].participantName
         cell.selectionStyle = .none
         return cell
     }
@@ -52,7 +51,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let nameData = labelData[indexPath.row]
         print(nameData)
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
