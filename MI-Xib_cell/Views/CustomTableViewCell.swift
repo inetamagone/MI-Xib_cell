@@ -33,13 +33,6 @@ class CustomTableViewCell: UITableViewCell {
         Bundle.main.loadNibNamed("CustomTableViewCell", owner: self, options: nil)
         addSubview(commonView)
         commonView.frame = self.frame
-        commonView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            commonView.topAnchor.constraint(equalTo: topAnchor),
-            commonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            commonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            commonView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
