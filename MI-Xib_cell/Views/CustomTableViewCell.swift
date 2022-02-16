@@ -15,13 +15,8 @@ class CustomTableViewCell: UITableViewCell {
     
     static var reuseId: String = "customCell"
     
-//    var labelNames: [LabelData] = []
-//    var labelStruct: LabelData?
-//    var labelData = [String]()
-    
-//    private var role = "My Role"
-//    private var  participantName = "My Name"
-    
+    var labelNames: [LabelData] = []
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,8 +25,7 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initView()
-//        self.labelData = []
-//        self.labelNames = []
+        self.labelNames = []
     }
     
     required init?(coder: NSCoder) {
@@ -46,6 +40,12 @@ class CustomTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func addData(){
+        labelNames.append(LabelData(role: "1a", participantName: "1b"))
+        labelNames.append(LabelData(role: "2a", participantName: "2b"))
+        labelNames.append(LabelData(role: "3a", participantName: "3b"))
     }
     
 //    func configure (labelList: [LabelData]) {

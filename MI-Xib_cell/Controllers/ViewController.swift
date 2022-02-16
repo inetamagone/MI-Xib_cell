@@ -11,8 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    //var labelData: LabelData!
-    
     var labelData = [
         LabelData(role: "Actor:", participantName: "Bruce Willis"),
         LabelData(role: "Camera operator:", participantName: "John Newton"),
@@ -44,46 +42,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-//        cell.roleLabel.tag = indexPath.section
-//        cell.nameLabel.tag = indexPath.section
+        let data = labelData[indexPath.row]
+        cell.roleLabel.text = data.role
+        cell.nameLabel.text = data.participantName
 //        cell.configure(labelList: labelData)
 //        cell.roleLabel.text = labelData[indexPath.row].role
 //        cell.nameLabel.text = labelData[indexPath.row].participantName
-        //cell.addNames(role: labelData[indexPath.row].role, participantName: labelData[indexPath.row].participantName)
         cell.selectionStyle = .none
         
-//        func setData(labelList: [LabelData]) -> [String] {
-//            var stringArray = [String]()
-//            self.labelData = labelList
-//
-//            for _ in labelList {
-//                for _ in 0...1 {
-//                stringArray.append(self.labelData[)
-//                stringArray.append(cell.self.labelData[indexPath.row].participantName)
-//
-//                }
-//            }
-//                        var first = labelList[0]
-//                        var second = labelList[1]
-//                        var third = labelList[2]
-//                        for _ in 0...1 {
-//                            //for _ in 0...1 {
-//                                stringArray.append(cell.self.labelData[indexPath.row].role)
-//                                stringArray.append(cell.self.labelData[indexPath.row].participantName)
-//                            //}
-//                        }
-//            print(labelList[0])
-//            print(stringArray)
-//            return stringArray
-//        }
-//        setData(labelList: labelData)
         return cell
-}
-
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let nameData = labelData[indexPath.row]
-//        print(nameData)
-//    }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
