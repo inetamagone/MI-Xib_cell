@@ -15,17 +15,16 @@ class CustomTableViewCell: UITableViewCell {
     
     static var reuseId: String = "customCell"
     
-    var labelNames: [LabelData] = []
-
+    var labelData: [LabelData] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initView()
-        self.labelNames = []
+        self.labelData = []
     }
     
     required init?(coder: NSCoder) {
@@ -42,25 +41,23 @@ class CustomTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func addData(){
-        labelNames.append(LabelData(role: "1a", participantName: "1b"))
-        labelNames.append(LabelData(role: "2a", participantName: "2b"))
-        labelNames.append(LabelData(role: "3a", participantName: "3b"))
+    func configure(labelList: [LabelData]) {
+        self.labelData = labelList
+        addToRole(roleLbl: roleLabel, nameLbl: nameLabel)
     }
     
-//    func configure (labelList: [LabelData]) {
-//        addNames(role: role, participantName: participantName)
-//        self.labelNames = labelList
-//    }
-//
-//    func addNames(role: String, participantName: String) -> [String] {
-//        var stringArray = [String]()
-//        stringArray.append(labelStruct?.role?)
-//        stringArray.append(labelStruct?.participantName?)
-//
-//
-//        print(stringArray)
-//        return stringArray
-//    }
+    func addToRole(roleLbl: UILabel, nameLbl: UILabel) {
+        var roleValue = ""
+        var nameValue = ""
+        var arrIndex = 0
+        for _ in labelData {
+            roleValue = self.labelData[arrIndex].role
+            nameValue = self.labelData[arrIndex].participantName
+            arrIndex += 1
+            roleLabel.text = roleValue
+            nameLabel.text = nameValue
+            print(roleValue)
+            print(nameValue)
+        }
+    }
 }
-

@@ -19,14 +19,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         myTableView.delegate = self
         myTableView.dataSource = self
         
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.reuseId)
         myTableView.rowHeight = 100
         myTableView.separatorColor = .clear
-        
     }
     
     required init?(coder: NSCoder) {
@@ -42,12 +40,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-        let data = labelData[indexPath.row]
-        cell.roleLabel.text = data.role
-        cell.nameLabel.text = data.participantName
-//        cell.configure(labelList: labelData)
-//        cell.roleLabel.text = labelData[indexPath.row].role
-//        cell.nameLabel.text = labelData[indexPath.row].participantName
+        cell.configure(labelList: labelData)
         cell.selectionStyle = .none
         
         return cell
