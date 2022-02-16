@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         myTableView.delegate = self
         myTableView.dataSource = self
         
-        myTableView.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseId)
-        
+        //myTableView.register(UINib.init(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseId)
+        myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.reuseId)
         myTableView.rowHeight = 100
         myTableView.separatorColor = .clear
     }
@@ -42,8 +42,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-        cell.roleLabel.tag = indexPath.section
-        cell.nameLabel.tag = indexPath.section
+        
         cell.configure(labelList: labelData)
         cell.selectionStyle = .none
         return cell

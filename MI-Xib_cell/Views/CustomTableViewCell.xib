@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTableViewCell" customModule="MI_Xib_cell" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="H2p-sc-9uM" id="T9x-l9-bmV"/>
+                <outlet property="commonView" destination="H2p-sc-9uM" id="bau-gP-X4D"/>
                 <outlet property="nameLabel" destination="hmI-a0-DGg" id="NIy-mS-646"/>
                 <outlet property="roleLabel" destination="JVh-c3-TkO" id="HyE-qv-sz4"/>
             </connections>
