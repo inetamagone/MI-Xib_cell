@@ -41,23 +41,15 @@ class CustomTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(labelList: [LabelData]) {
+    func configure(labelList: [LabelData], indexOfRow: LabelData) {
         self.labelData = labelList
-        addToRole(roleLbl: roleLabel, nameLbl: nameLabel)
-    }
-    
-    func addToRole(roleLbl: UILabel, nameLbl: UILabel) {
         var roleValue = ""
         var nameValue = ""
-        var arrIndex = 0
-        for _ in labelData {
-            roleValue = self.labelData[arrIndex].role
-            nameValue = self.labelData[arrIndex].participantName
-            arrIndex += 1
-            roleLabel.text = roleValue
-            nameLabel.text = nameValue
-            print(roleValue)
-            print(nameValue)
-        }
+        
+        roleValue = indexOfRow.role
+        nameValue = indexOfRow.participantName
+        self.roleLabel.text = roleValue
+        self.nameLabel.text = nameValue
     }
+    
 }

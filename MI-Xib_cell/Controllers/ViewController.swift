@@ -40,9 +40,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
-        cell.configure(labelList: labelData)
-        cell.selectionStyle = .none
         
+        let indexOfRow = labelData[indexPath.row]
+        cell.configure(labelList: labelData, indexOfRow: indexOfRow)
+        
+        cell.selectionStyle = .none
         return cell
     }
     
