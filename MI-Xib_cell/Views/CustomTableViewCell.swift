@@ -8,23 +8,22 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var commonView: UIView!
     @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
     static var reuseId: String = "customCell"
-    private var labelData: [LabelData] = []
+    
+    var labelData: LabelData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initView()
-        //backgroundColor = .blue
     }
     
     required init?(coder: NSCoder) {
@@ -35,22 +34,19 @@ class CustomTableViewCell: UITableViewCell {
         Bundle.main.loadNibNamed("CustomTableViewCell", owner: self, options: nil)
         addSubview(commonView)
         commonView.frame = self.frame
-        commonView.translatesAutoresizingMaskIntoConstraints = false
-        commonView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            commonView.topAnchor.constraint(equalTo: topAnchor),
-            commonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            commonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            commonView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure (labelList: [LabelData]) {
-        self.labelData = labelList
+    func configure(indexOfRow: LabelData) {
+        var roleValue = ""
+        var nameValue = ""
+        
+        roleValue = indexOfRow.role
+        nameValue = indexOfRow.participantName
+        self.roleLabel.text = roleValue
+        self.nameLabel.text = nameValue
     }
 }
-
