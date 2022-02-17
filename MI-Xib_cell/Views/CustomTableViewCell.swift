@@ -15,7 +15,7 @@ class CustomTableViewCell: UITableViewCell {
     
     static var reuseId: String = "customCell"
     
-    var labelData: [LabelData] = []
+    var labelData: LabelData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +24,6 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initView()
-        self.labelData = []
     }
     
     required init?(coder: NSCoder) {
@@ -41,8 +40,7 @@ class CustomTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(labelList: [LabelData], indexOfRow: LabelData) {
-        self.labelData = labelList
+    func configure(indexOfRow: LabelData) {
         var roleValue = ""
         var nameValue = ""
         
@@ -51,5 +49,4 @@ class CustomTableViewCell: UITableViewCell {
         self.roleLabel.text = roleValue
         self.nameLabel.text = nameValue
     }
-    
 }

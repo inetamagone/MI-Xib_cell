@@ -42,7 +42,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseId, for: indexPath) as? CustomTableViewCell else {return .init()}
         
         let indexOfRow = labelData[indexPath.row]
-        cell.configure(labelList: labelData, indexOfRow: indexOfRow)
+        cell.configure(indexOfRow: indexOfRow)
         
         cell.selectionStyle = .none
         return cell
